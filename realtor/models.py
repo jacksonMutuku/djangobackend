@@ -1,49 +1,49 @@
 from django.db import models
+from django_add_default_value import AddDefaultValue
 
 
-class ForRent(models.Model):
-    fname= models.CharField(max_length=50)
+class Contacts(models.Model):
+    firstname= models.CharField(max_length=50)
     lastname= models.CharField(max_length=50)
     email=models.EmailField(max_length=50)
-    location= models.CharField(max_length=50)
-    coverPhoto=models.ImageField(upload_to ='uploads/images',blank='false', null='false')
-    coverPhoto1=models.ImageField(upload_to ='uploads/images',blank='true')
-    # image_two = models.ImageField()
-    # image_three = models.ImageField()
-    rentamount=models.IntegerField(blank=True)
-    purpose=models.CharField(max_length=50)
-    bathno= models.IntegerField(blank=True)
-    furnishingStatus=models.CharField(max_length=50)
-    housetype=models.CharField(max_length=50)
-    rentFrequency=models.CharField(max_length=50)
-    description=models.TextField(max_length=1000)
-    roomnumber=models.IntegerField()
-    # area=models.float()
-    # roomnumber=models.IntegerField()
-    # date=models.DateTimeField(auto_add_now=True)
+    phoneNumber=models.IntegerField(null=True)
 
 
-class ForSale(models.Model):
-    fname= models.CharField(max_length=50)
-    lastname= models.CharField(max_length=50)
-    email=models.EmailField(max_length=50)
+# class Properties(models.Model):
+#     class Meta:
+#         abstract=True
+
+class PropertyOwner(models.Model):
+    contact= models.ForeignKey(Contacts,null=True,on_delete=models.CASCADE)
+
+class Tenant(models.Model):
+    contact= models.ForeignKey(Contacts,on_delete=models.CASCADE)
+
+class Listing(models.Model):
     location= models.CharField(max_length=50)
     coverPhoto=models.ImageField(upload_to ='uploads/images',blank='false', null='false')
-    # image_two = models.ImageField()
+    # photos = models.JSONField('uploads/photos',blank='false', null='false')
     photos = models.ImageField('uploads/photos',blank='false', null='false')
-    price=models.IntegerField(blank=True)
     purpose=models.CharField(max_length=50)
-    bathno= models.IntegerField(blank=True)
     furnishingStatus=models.CharField(max_length=50)
     housetype=models.CharField(max_length=50)
-    description=models.TextField(max_length=1000)
-    roomnumber=models.IntegerField()
-    # area=models.float()
-    # roomnumber=models.IntegerField()
-    # date=models.DateTimeField(auto_add_now=True)
+    description=models.TextField(max_length=1000,blank=True)
+    rooms=models.IntegerField()
+    bathrooms=models.IntegerField()
+    class Meta:
+        abstract=True
 
 
-    # def__str__(self):
-    #     return self.name
-    
-    
+class ForSale(Listing):
+    owner= models.ForeignKey(PropertyOwner,null=True,on_delete=models.CASCADE)
+    price=models.IntegerField()
+    # listing= models.OneToOneField(Listing,null=True,on_delete=models.CASCADE)
+
+
+class ForRent(Listing):
+    owner= models.ForeignKey(PropertyOwner,null=True,on_delete=models.CASCADE)
+    rentamount=models.IntegerField(blank=True)
+    rentFrequency=models.CharField(max_length=50)
+    # listing= models.OneToOneField(Listing,null=True,on_delete=models.CASCADE)
+
+

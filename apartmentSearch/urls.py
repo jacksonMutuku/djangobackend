@@ -19,6 +19,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from realtor.views import ForRentView
 from realtor.views import ForSaleView
+# from realtor.views import showmultiplemodels
+# from realtor.views import ContactsView,ContactsUpdateView
+from realtor.views import ContactsCreateView,ContactsUpdateView,DataDetailsView,DataListView,showmultiplemodels
+
 # from rest_framework import routers
 from rest_framework.routers import DefaultRouter
 
@@ -28,10 +32,17 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register(r'forsale',ForSaleView,basename="forsale")
 router.register(r'forrent',ForRentView,basename="forrent")
-
+# router.register(r'properties',showmultiplemodels,basename="properties")
+# router.register(r'Contacts',ContactsCreateView,basename="Contacts")
 
 urlpatterns = [
+    path('properties/',showmultiplemodels),
     path('admin/', admin.site.urls),
+    path('<pk>',DataDetailsView.as_view()),
+    path('view/',DataListView.as_view()),
+    path('Create/',ContactsCreateView.as_view()),
+    # path('Contacts/',ContactsCreateView.as_view(),name="Contacts"),
+    path('<pk>/update/',ContactsUpdateView.as_view()),
     path('', include(router.urls)),
     # path('api/forrent/', include(route.urls)), 
     # path('api/forsale/', include(route.urls)),
