@@ -8,7 +8,6 @@ class Contacts(models.Model):
     email=models.EmailField(max_length=50)
     phoneNumber=models.IntegerField(null=True)
 
-
 # class Properties(models.Model):
 #     class Meta:
 #         abstract=True
@@ -29,19 +28,21 @@ class Listing(models.Model):
     housetype=models.CharField(max_length=50)
     description=models.TextField(max_length=1000,blank=True)
     rooms=models.IntegerField()
+    amenities=models.CharField(max_length=5000)
     bathrooms=models.IntegerField()
     class Meta:
         abstract=True
 
 
 class ForSale(Listing):
-    owner= models.ForeignKey(PropertyOwner,null=True,on_delete=models.CASCADE)
+    ownerId=models.ForeignKey(Contacts,null=True,on_delete=models.CASCADE)
     price=models.IntegerField()
+
     # listing= models.OneToOneField(Listing,null=True,on_delete=models.CASCADE)
 
 
 class ForRent(Listing):
-    owner= models.ForeignKey(PropertyOwner,null=True,on_delete=models.CASCADE)
+    owner= models.ForeignKey(Contacts,null=True,on_delete=models.CASCADE)
     rentamount=models.IntegerField(blank=True)
     rentFrequency=models.CharField(max_length=50)
     # listing= models.OneToOneField(Listing,null=True,on_delete=models.CASCADE)

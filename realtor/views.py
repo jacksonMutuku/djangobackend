@@ -9,6 +9,7 @@ from .models import Listing
 from .serializers import ForSaleSerializer
 from .serializers import ForRentSerializer
 from .serializers import ContactsSerializer
+# from .serializers import CombinedSerializer
 # from .serializers import PropertiesSerializer
 from rest_framework import viewsets
 from rest_framework.generics import ListAPIView,CreateAPIView,UpdateAPIView,RetrieveAPIView
@@ -27,6 +28,16 @@ class ForSaleView(viewsets.ModelViewSet):
 #     queryset = Listing.objects.all() 
 #     serializer_class = PropertiesSerializer
 
+# class CreatedData(viewsets.ModelViewSet):
+#     queryset = ForSale.objects.all()
+#     serializer_class = CombinedSerializer
+
+
+# class CombinedView(viewsets.ModelViewSet):
+#     queryset = ForRent.objects.all()
+#     serializer_class = CombinedSerializer
+
+
 @api_view(['GET'])
 def showmultiplemodels(request):
     rentproperties=ForRent.objects.all()
@@ -38,7 +49,7 @@ def showmultiplemodels(request):
 
 class ForRentView(viewsets.ModelViewSet):
     queryset = ForRent.objects.all() 
-    #  queryset = Data.objects.all() .order_by('-purpose')
+    # dqueryset = Data.objects.all() .order_by('-purpose')
     serializer_class = ForRentSerializer
 
 

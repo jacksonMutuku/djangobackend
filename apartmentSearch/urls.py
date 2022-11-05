@@ -32,14 +32,15 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register(r'forsale',ForSaleView,basename="forsale")
 router.register(r'forrent',ForRentView,basename="forrent")
-# router.register(r'properties',showmultiplemodels,basename="properties")
+# router.register(r'properties',CombinedView,basename="properties")
 # router.register(r'Contacts',ContactsCreateView,basename="Contacts")
 
 urlpatterns = [
     path('properties/',showmultiplemodels),
+    # path('properties/',CombinedView.as_view()),
     path('admin/', admin.site.urls),
-    path('<pk>',DataDetailsView.as_view()),
-    path('view/',DataListView.as_view()),
+    path('owner/<int:pk>/',DataDetailsView.as_view()),
+    path('owner/',DataListView.as_view()),
     path('Create/',ContactsCreateView.as_view()),
     # path('Contacts/',ContactsCreateView.as_view(),name="Contacts"),
     path('<pk>/update/',ContactsUpdateView.as_view()),
