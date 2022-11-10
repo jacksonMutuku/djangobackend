@@ -21,7 +21,8 @@ from realtor.views import ForRentView
 from realtor.views import ForSaleView
 # from realtor.views import showmultiplemodels
 # from realtor.views import ContactsView,ContactsUpdateView
-from realtor.views import ContactsCreateView,ContactsUpdateView,DataDetailsView,DataListView,showmultiplemodels
+# from realtor.views import ContactsCreateView,ContactsUpdateView,DataDetailsView,DataListView,showmultiplemodels
+from realtor.views import showmultiplemodels
 
 # from rest_framework import routers
 from rest_framework.routers import DefaultRouter
@@ -39,11 +40,11 @@ urlpatterns = [
     path('properties/',showmultiplemodels),
     # path('properties/',CombinedView.as_view()),
     path('admin/', admin.site.urls),
-    path('owner/<int:pk>/',DataDetailsView.as_view()),
-    path('owner/',DataListView.as_view()),
-    path('Create/',ContactsCreateView.as_view()),
+    # path('owner/<int:pk>/',DataDetailsView.as_view()),
+    # path('owner/',DataListView.as_view()),
+    # path('Create/',ContactsCreateView.as_view()),
     # path('Contacts/',ContactsCreateView.as_view(),name="Contacts"),
-    path('<pk>/update/',ContactsUpdateView.as_view()),
+    # path('<pk>/update/',ContactsUpdateView.as_view()),
     path('', include(router.urls)),
     # path('api/forrent/', include(route.urls)), 
     # path('api/forsale/', include(route.urls)),

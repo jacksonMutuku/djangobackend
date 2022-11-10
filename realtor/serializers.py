@@ -2,7 +2,7 @@
 from rest_framework import serializers
 from .models import ForRent
 from .models import ForSale
-from .models import Contacts
+# from .models import Contacts
 # from .models import Listing
 
 
@@ -20,6 +20,8 @@ class ForSaleSerializer(serializers.ModelSerializer):
         'rentFrequency': {'required': False},
         'furnishingStatus': {'required': False},
         'purpose': {'required': False},
+        'coverPhoto': {'required': False},
+        'otherPhotos': {'required': False},
         }
 
 
@@ -38,6 +40,8 @@ class ForRentSerializer(serializers.ModelSerializer):
         'rentFrequency': {'required': False},
         'furnishingStatus': {'required': False},
         'purpose': {'required': False},
+        'coverPhoto': {'required': False},
+        'otherPhotos': {'required': False},
         }
 
 class PropertiesSerializer(serializers.ModelSerializer):
@@ -54,8 +58,8 @@ class PropertiesSerializer(serializers.ModelSerializer):
 #         fields= '__all__'
 
 
-class ContactsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Contacts
-        fields= '__all__'
-        extra_kwargs = {'std_code': {'required': False},'uni_code': {'required': False},'lastname': {'required': False},'firstname': {'required': False},'phoneNumber': {'required': False},'email': {'required': False}}
+# class ContactsSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Contacts
+#         fields= '__all__'
+#         extra_kwargs = {'std_code': {'required': False},'uni_code': {'required': False},'lastname': {'required': False},'firstname': {'required': False},'phoneNumber': {'required': False},'email': {'required': False}}
