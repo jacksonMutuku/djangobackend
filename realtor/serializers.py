@@ -2,8 +2,8 @@
 from rest_framework import serializers
 from .models import ForRent
 from .models import ForSale
-# from .models import Contacts
-# from .models import Listing
+
+
 
 
 class ForSaleSerializer(serializers.ModelSerializer):
@@ -50,6 +50,23 @@ class PropertiesSerializer(serializers.ModelSerializer):
     class Meta : 
         model = ForRent, ForSale
         fields = "__all__"
+
+
+
+
+    # def validate_reference(self, reference):
+    #     """Write your validation logic here"""
+    #     if reference:
+    #         return reference
+    #     return "Test"
+
+    # def validate_description(self, description):
+    #     """Write your validation logic here"""
+    #     if description:
+    #         return description
+    #     return "Test"
+
+
 
 # class CombinedSerializer(serializers.Serializer):
 #     allproperties=ForSaleSerializer(many=True)

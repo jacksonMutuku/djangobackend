@@ -12,6 +12,17 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+# import environ
+
+# env = environ.Env()
+# environ.Env.read_env()
+
+# consumer_key=env("consumer_key")
+# consumer_secret=env("consumer_secret")
+# shortcode=env("shortcode")
+# pass_key=env("pass_key")
+# access_token_url=env("access_token")
+# checkout_url=env("checkout_url")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +55,9 @@ INSTALLED_APPS = [
     'realtor.apps.RealtorConfig',
     'rest_framework',
     'corsheaders',
+    'mpesa',
+    'bootstrap5',
+    
 ]
 
 
@@ -139,7 +153,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
